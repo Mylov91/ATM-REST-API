@@ -1,6 +1,7 @@
 package ru.mylov.ATM.models;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -13,6 +14,9 @@ public class User {
 
     @Column(name = "balance")
     private long balance;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Operation> operations;
 
     public long getId() {
         return id;
@@ -28,5 +32,13 @@ public class User {
 
     public void setBalance(long balance) {
         this.balance = balance;
+    }
+
+    public List<Operation> getOperations() {
+        return operations;
+    }
+
+    public void setOperations(List<Operation> operations) {
+        this.operations = operations;
     }
 }
